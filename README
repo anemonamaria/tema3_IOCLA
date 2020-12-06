@@ -1,0 +1,10 @@
+ atoi primeste ca parametru adresa unui
+string(sir de char-uri) si il parcurge char cu
+char calculand cifra curenta ca si codul ascii al
+char ului curent - 48(codul ascii pentru '0').
+Formarea numarului se face inmultind la fiecare
+pas EAX cu 10 si adaguand la EAX cifra curenta
+(EAX este 0 la inceput). Totodata verifica si daca
+primul caracter este '-' si inmulteste la final
+numarul format cu -1. Rezultatul este returnat
+in EAX.
