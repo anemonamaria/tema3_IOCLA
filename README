@@ -1,10 +1,36 @@
- atoi primeste ca parametru adresa unui
-string(sir de char-uri) si il parcurge char cu
-char calculand cifra curenta ca si codul ascii al
-char ului curent - 48(codul ascii pentru '0').
-Formarea numarului se face inmultind la fiecare
-pas EAX cu 10 si adaguand la EAX cifra curenta
-(EAX este 0 la inceput). Totodata verifica si daca
-primul caracter este '-' si inmulteste la final
-numarul format cu -1. Rezultatul este returnat
-in EAX.
+Moraru Anemona Maria
+323CC - Decembrie 2020
+Tema 3 - AST
+
+Implementarea temei ai durat aproximativ 8 ore. A fost o tema interesanta, mie
+mi-a placut cel mai mult ca am avut de facut doar functiile, nu si main-ul. 
+
+Functia 'iocla_atoi' parcurge string-ul dat caracter cu caracter pana ajunge la
+terminatorul de sir. In 'while1' verific daca char-ul la are ma aflu este cumva
+'-' (caz in care modific ecx-ul in 1. ECX = 1 fiind pentru numere negative si
+ECX = 0 fiind pentru numere pozitive) sau daca are codul ASCII situat intre cele
+pentru 0 si 9 (caracterele aflate in afara acestui interval duc la terminarea
+functiei). Pentru a calcula cifra la care ma aflu scad din codul ASCII al 
+caracterului la care ma aflu codul ASCII pentru '0'. Pentru a forma numarul 
+inmultesc de fiecare data cu 10 si apoi adun cifra gasita la pasul anterior. La 
+finalul functiei verific daca numarul este negativ, in caz afirmativ il 
+inmultesc cu -1.
+
+Functia 'create_tree' parcurge string-ul din token in token dupa apelarea 
+functiei strtok. Primul apel al functiei strtok imi va da root-ul structurii,
+deoarece fiecare structura incepe cu operatori. Creez nodul primului token si 
+il adaug in structura ca si root si il urc pe stiva deoarece sunt sigura ca 
+este operaror. Inaintea de a intra in 'while2' mai am un apel al lui strtok cu
+null si delimitator pentru a obtine urmatorul token. In 'while2' creez nodul 
+pentru fiecare token, verific continutul nodului daca este operator si in caz
+afirmativ il urc pe stiva. 'continue' este prelungirea lui 'while2' in care se 
+realizeaza impartirea in tokeni a stringului ramas. Portiunea 'caz_special'
+analizeaza momentul in care programul intalneste '-' pentru a vedea daca acesta
+apartine operarorilor sau operanzilor. 'urca_pe_stiva' adauga operator la nodul
+la care ne aflam si alege daca acesta va fi fiul stang sau fiul drept. Stim
+sigur daca un nod are fiii completati sau nu in momentul in care reusim sa il 
+scoatem dupa stiva. De aceea, vom verifica doar daca exista fiul stang, in caz
+afirmativ adaugam la cel drept si nu mai punem inapoi pe stiva operatorul 
+pentru ca acum nodul parinte este complet. In label-ul 'next' realizam
+asemanator adaugarea frunzelor (operanzilor) in structura. In final mutam 
+structura formata in eax si returnam rezultatul. 
